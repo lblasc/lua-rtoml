@@ -2,12 +2,12 @@ package = "lua-rtoml"
 version = "0.1-0"
 
 source = {
-    url = "git+ssh://git@github.com/scr1pt0r/lua-rtoml.git"
+    url = "git+https://github.com/lblasc/lua-rtoml.git"
 }
 
 description = {
     summary = "Lua bindings for the Rust toml crate.",
-    homepage = "https://github.com/scr1pt0r/lua-rtoml",
+    homepage = "https://github.com/lblasc/lua-rtoml",
     license = "MIT"
 }
 
