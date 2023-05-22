@@ -18,5 +18,5 @@ name = "toml"
 crate-type = ["cdylib"]
 
 [dependencies]
-mlua = { version = "0.8.3", features = ["module", "send", "serialize"] }
-toml = "0.5.9"
+mlua = { version = "0.8", features = ["module", "send", "serialize"] }
+toml = "0.6"
