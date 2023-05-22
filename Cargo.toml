@@ -19,4 +19,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 mlua = { version = "0.8", features = ["module", "send", "serialize"] }
-toml = "0.6"
+toml = "0.7"
