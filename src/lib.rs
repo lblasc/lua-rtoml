@@ -7,7 +7,7 @@ fn load<'lua>(lua: &'lua Lua, value: LuaValue<'lua>) -> LuaResult<LuaValue<'lua>
         return Err(format!("invalid type: {}, expected string", value.type_name()).to_lua_err());
     };
 
-    let toml_value = toml::from_slice::<toml::Value>(toml.as_bytes())
+    let toml_value = toml::from_str::<toml::Value>(&toml.to_string_lossy())
         .map_err(|e| LuaError::external(e.to_string()))?;
 
     lua.to_value(&toml_value)
