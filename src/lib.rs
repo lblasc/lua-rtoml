@@ -1,10 +1,10 @@
 use mlua::prelude::*;
 
-fn load<'lua>(lua: &'lua Lua, value: LuaValue<'lua>) -> LuaResult<LuaValue<'lua>> {
+fn load(lua: &Lua, value: LuaValue) -> LuaResult<LuaValue> {
     let toml = if let LuaValue::String(toml) = value {
         toml
     } else {
-        return Err(format!("invalid type: {}, expected string", value.type_name()).to_lua_err());
+        return Err(format!("invalid type: {}, expected string", value.type_name()).into_lua_err());
     };
 
     let toml_value = toml::from_str::<toml::Value>(&toml.to_string_lossy())
@@ -13,7 +13,7 @@ fn load<'lua>(lua: &'lua Lua, value: LuaValue<'lua>) -> LuaResult<LuaValue<'lua>
     lua.to_value(&toml_value)
 }
 
-fn dump<'lua>(lua: &'lua Lua, value: LuaValue<'lua>) -> LuaResult<LuaValue<'lua>> {
+fn dump(lua: &Lua, value: LuaValue) -> LuaResult<LuaValue> {
     Ok(LuaValue::String(lua.create_string(
         &toml::to_string(&value).map_err(|e| LuaError::external(e.to_string()))?,
     )?))
